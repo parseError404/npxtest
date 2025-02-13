@@ -30,7 +30,12 @@
                 outputDiv.innerHTML = '<strong>Error:</strong> ' + error;
             }
         }
-
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.href.includes('yourdeeplink')) {
+    console.log('Deep link detected in web app:', window.location.href);
+    // Navigate to the appropriate page
+  }
+});
     </script>
 </body>
 </html>
