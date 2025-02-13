@@ -31,44 +31,6 @@
             }
         }
 
-        // ionic /capacitor
-
-        import { createApp } from 'vue';
-        import App from './App.vue';
-        import { App as CapacitorApp } from '@capacitor/app';
-        import { NativeBiometric } from "capacitor-native-biometric";
-        
-        const app = createApp(App);
-        console.log("IM LOADED");
-        CapacitorApp.addListener('appUrlOpen', async (event) => {
-          console.log('App opened via deep link:', event.url);
-        
-          if (event.url === "faceid-login") {
-            try {
-              // Check if biometrics are available
-              const isAvailable = await NativeBiometric.isAvailable();
-              if (!isAvailable) {
-                console.log("Biometric authentication not available");
-                return;
-              }
-        
-              // Authenticate user
-              const result = await NativeBiometric.verifyIdentity({
-                reason: "Authenticate to continue",
-                title: "Biometric Login",
-                subtitle: "Use Face ID or Touch ID",
-                description: "Secure authentication required",
-              });
-        
-              console.log("Authentication Success:", result);
-            } catch (error) {
-              console.error("Biometric Auth Error:", error);
-            }
-          }
-        });
-        
-        app.mount('#app');
-
     </script>
 </body>
 </html>
